@@ -1,0 +1,42 @@
+Exe 1:
+
+To create vm in azure using terraform:
+======================================
+
+step 1: Make sure terraform installed in your machine or download and install it by https://www.terraform.io/downloads.html
+
+step 2: copy the "main.tf variables.tf and outputs.tf" to your terraform installed machine.
+
+step 3:  provide your below azure authentication value in main.tf file and save it.
+  subscription_id = ""
+  client_id       = ""
+  client_secret   = ""
+  tenant_id       = ""
+  
+step 4: Run the command in directory where "tf" files stored "terraform init"
+
+step 5: Run the command "terraform plan"
+
+step 6: run the command "terraform apply" 
+
+step 7: it ask for apply the changes provide "yes" in prompt
+
+step 8: copy the private key from terminal after execution and save it in textfile. 
+
+step 9: open putty-gen and load the textfile and save it as private key.
+
+step 10: get ip details from azure portal and connect through putty 
+
+step 11: username is "azureuser" you can refer in main.tf file.
+
+step 12: you can able to ping the vm's each other by using private-ip both will be in same network
+
+step 13: command is "ping ip-address" to check the communication between vm's. 
+
+
+Script for cpu disk and network metrics:
+========================================
+
+step 1: copy the script "servermetrics.sh" where need to execute in linux machine.
+
+step 2: execute the script run by "./servermetrics.sh"

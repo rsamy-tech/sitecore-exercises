@@ -1,0 +1,26 @@
+Exe4:
+
+Troubleshooting steps:
+======================
+Reload the website
+Check proxy settings
+Restart the DefaultAppPool 
+
+Issue:
+======
+In advance settings of default applicationpool the identity parameter set to "custom account", so changed the builtin account set to localsystem
+
+
+Steps to fix:
+=============
+step 1: In IIS --> go to application pools 
+
+step 2: In the server find the application pool for the default site 
+
+step 3: select  and go to advanced settings 
+
+step 4:select the identity and change the user to Localsystem.
+
+step 5: If any user added means we want add that username and password
+
+Then click the applicationpool and select Recycle to restart.

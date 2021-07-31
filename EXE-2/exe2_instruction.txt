@@ -1,0 +1,25 @@
+Exe2:
+
+Install and run elastic in docker container:
+============================================
+
+Step1: copy elasticsearch.sh file to the machine.
+
+Step 2: Run the script using command "./elasticsearch.sh"
+
+It will install the 
+===================
+curl command
+
+install the docker
+
+container will start running on the port 9200
+
+you can verfy it by command "docker ps" and in browser use http://localhost:9200
+
+for health check use command "curl http://127.0.0.1:9200/_cat/health" / "curl http://localhost:9200/_cat/health"
+
+
+
+
+ 

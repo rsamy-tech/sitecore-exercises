@@ -1,0 +1,35 @@
+Exe3:
+
+Troubleshooting steps:
+======================
+Started the redis using systemctl it was failing.
+Verified the redis.conf and redis-server.log file permissions looks fine.
+Try to start manually it started.
+Suspects the redis-server version may be incomaptible issue.
+so removed and installed again it works.
+
+Issue:
+======
+The redis-server version incompatibilities issue.
+
+
+Steps to fix:
+=============
+step 1: Remove redis-server 
+        sudo apt-get --purge remove redis-server
+
+step 2: Restarted the machine 
+        init 6
+
+step 3: updated the os
+        sudo apt-get update
+
+step 4: Install the redis-server
+        sudo apt-get install redis-server
+
+step 5: Started the redis-server
+        sudo systemctl start redis
+
+step 6: Status redis service and port "6379" status.
+        sudo systemctl status redis 
+        netstat -nltp

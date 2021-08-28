@@ -1,0 +1,2 @@
+step 1: Execute the playbook by using command "ansible-playbook playbook.yaml"
+step 2: make sure the "kubectl" installed in machine

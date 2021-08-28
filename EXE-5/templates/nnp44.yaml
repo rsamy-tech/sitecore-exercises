@@ -1,0 +1,17 @@
+nnp44:
+  services:
+    - name: worker
+    - name: vision
+    - name: ui
+  resources:
+    ram: 2
+  uiconfig:
+    modules:
+       - core
+       - api
+       - web
+       - web-api
+  users:
+    - user: administrator
+      permissions:
+         - admin

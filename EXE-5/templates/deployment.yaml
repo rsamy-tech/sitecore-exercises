@@ -1,0 +1,92 @@
+---
+api_version: v1
+kind: ConfigMap
+metadata: 
+  name: configuration 
+  data:
+    config.json: | 
+        {
+          "uiconfig":{
+             "modules":"core, api, web, web-api"
+            } 
+        }
+    state: present
+  ignore_errors: true 
+
+
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: vision
+spec:
+  serviceName: vision
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ansible
+  template:
+    metadata:
+    spec:
+      containers:
+      - name: ubuntu-vision
+        image: ubuntu:18.04
+      resources:
+          limits:
+            cpu: 4
+            memory: 8Gi 
+
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: worker
+spec:
+  serviceName: worker
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ansible
+  template:
+    metadata:
+    spec:
+      containers:
+      - name: ubuntu-worker
+        image: ubuntu:16.04
+      resources:
+          limits:
+            cpu: 2
+            memory: 4Gi   
+      ports:
+        - containerPort: 8094               
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ui
+spec:
+  serviceName: ui
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ansible
+  template:
+    metadata:
+    spec:
+      containers:
+      - name: apache-ui
+        image: apache:alpine-3.12
+        volumeMounts:
+          - name: config-volume
+            mountPath: /etc/ui/config.json
+      volumes:
+        - name: config-volume
+          configMap:
+            name: configuration
+      resources:
+          limits:
+            cpu: 2
+            memory: 2Gi   
+      ports:
+        - containerPort: 8080                      

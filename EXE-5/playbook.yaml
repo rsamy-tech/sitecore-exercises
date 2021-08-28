@@ -1,0 +1,14 @@
+---
+- name: k8s deployments
+  hosts: localhost
+  
+  vars_prompt:
+    - name: "tenant"
+      prompt: "Provide tenant name dsf46 or nnp44"
+
+  tasks:
+    - name: Deploy the k8s configmap statefullset and deployment
+      command: "kubectl create -f templates/deployment.yaml"
+    
+    - name: Selecting the tenant name
+      command: "kubectl create -f templates/'{{ tenant }}'.yaml"
